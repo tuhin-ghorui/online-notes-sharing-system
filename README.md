@@ -43,37 +43,37 @@ The system also includes an Admin panel to manage subjects and moderate uploaded
 ---
 
 ## 📂 Project Structure
+
+<pre>
 online-notes-sharing-system/
 │
 ├── admin/
-│ ├── dashboard.php
-│ ├── manage_subjects.php
-│ ├── manage_notes.php
-│ └── view_note.php
+│   ├── dashboard.php
+│   ├── manage_subjects.php
+│   ├── manage_notes.php
+│   └── view_note.php
 │
 ├── auth/
-│ ├── login.php
-│ ├── register.php
-│ └── logout.php
+│   ├── login.php
+│   ├── register.php
+│   └── logout.php
 │
 ├── student/
-│ ├── dashboard.php
-│ ├── upload_notes.php
-│ ├── view_notes.php
-│ └── view_note.php
+│   ├── dashboard.php
+│   ├── upload_notes.php
+│   ├── view_notes.php
+│   └── view_note.php
 │
 ├── assets/css/
-│ └── styles.css
+│   └── styles.css
 │
-├── config/
-│ └── db.php (ignored for security)
-│
-├── uploads/
-│ └── notes/ (ignored)
-│
+├── config/db.php   (ignored)
+├── uploads/        (ignored)
 ├── index.php
 ├── .gitignore
 └── README.md
+</pre>
+
 
 
 ---
@@ -94,3 +94,4 @@ $db   = "YOUR_DB_NAME";
 
 🔗 Hosted on InfinityFree
 https://onlinenotessharing.page.gd/auth/login.php
+
