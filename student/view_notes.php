@@ -45,58 +45,55 @@ if (!isset($_SESSION['user_id'])) {
         <button type="submit">Search</button>
     </form>
 
-    <!-- TABLE -->
-    <div class="table-wrapper">
-        <table class="notes-table">
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Subject</th>
-                    <th>Uploaded By</th>
-                    <th>Date</th>
-                    <th>View</th>
-                    <th>Download</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                $where = "";
+    <!-- NOTES CARDS -->
+    <div class="notes-cards">
 
-                if (isset($_GET['subject_id']) && $_GET['subject_id'] != "") {
-                    $subject_id = intval($_GET['subject_id']);
-                    $where = "WHERE notes.subject_id = $subject_id";
-                }
+        <?php
+        $where = "";
 
-                $query = "
-                    SELECT notes.*, users.name, subjects.subject_name 
-                    FROM notes
-                    JOIN users ON notes.user_id = users.user_id
-                    JOIN subjects ON notes.subject_id = subjects.subject_id
-                    $where
-                    ORDER BY notes.uploaded_on DESC
-                ";
+        if (isset($_GET['subject_id']) && $_GET['subject_id'] != "") {
+            $subject_id = intval($_GET['subject_id']);
+            $where = "WHERE notes.subject_id = $subject_id";
+        }
 
-                $result = mysqli_query($conn, $query);
+        $query = "
+            SELECT notes.*, users.name, subjects.subject_name 
+            FROM notes
+            JOIN users ON notes.user_id = users.user_id
+            JOIN subjects ON notes.subject_id = subjects.subject_id
+            $where
+            ORDER BY notes.uploaded_on DESC
+        ";
 
-                while ($row = mysqli_fetch_assoc($result)) {
-                    echo "<tr>
-                            <td>{$row['title']}</td>
-                            <td>{$row['subject_name']}</td>
-                            <td>{$row['name']}</td>
-                            <td>{$row['uploaded_on']}</td>
-                            <td>
-                                <a class='action view' href='view_note.php?id={$row['note_id']}'>View</a>
-                            </td>
-                            <td>
-                                <a class='action download' href='../uploads/notes/{$row['file_name']}' download>
-                                    Download
-                                </a>
-                            </td>
-                          </tr>";
-                }
-                ?>
-            </tbody>
-        </table>
+        $result = mysqli_query($conn, $query);
+
+        if (mysqli_num_rows($result) == 0) {
+            echo "<p class='no-notes'>No notes found.</p>";
+        }
+
+        while ($row = mysqli_fetch_assoc($result)) {
+            echo "
+            <div class='note-card'>
+                <h3>{$row['title']}</h3>
+
+                <p class='note-subject'>📘 {$row['subject_name']}</p>
+
+                <p class='note-meta'>
+                    👤 {$row['name']} <br>
+                    🕒 {$row['uploaded_on']}
+                </p>
+
+                <div class='note-actions'>
+                    <a class='btn view' href='view_note.php?id={$row['note_id']}'>View</a>
+                    <a class='btn download' href='../uploads/notes/{$row['file_name']}' download>
+                        Download
+                    </a>
+                </div>
+            </div>
+            ";
+        }
+        ?>
+
     </div>
 
     <a href="dashboard.php" class="back-link">⬅ Back to Dashboard</a>
