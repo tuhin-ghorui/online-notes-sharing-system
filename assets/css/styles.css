@@ -147,7 +147,7 @@ button:hover {
 
 .dashboard-wrapper {
     min-height: 100vh;
-    padding: 40px;
+    padding: 20px;
     background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
     color: #fff;
 }
@@ -354,7 +354,7 @@ button:hover {
 .notes-page {
     min-height: 100vh;
     background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-    padding: 40px;
+    padding: 20px;
     color: #fff;
 }
 
@@ -437,11 +437,12 @@ button:hover {
 
 /* ACTION BUTTONS */
 .action {
-    padding: 6px 12px;
     border-radius: 6px;
     text-decoration: none;
-    font-size: 13px;
     font-weight: 600;
+    padding: 10px 14px;
+    font-size: 14px;
+    border-radius: 8px;
 }
 
 .action.view {
@@ -481,7 +482,7 @@ button:hover {
 
 .admin-wrapper {
     min-height: 100vh;
-    padding: 40px;
+    padding: 20px;
     background: linear-gradient(135deg, #141e30, #243b55);
     color: #fff;
 }
@@ -566,7 +567,7 @@ button:hover {
 .admin-page {
     min-height: 100vh;
     background: linear-gradient(135deg, #141e30, #243b55);
-    padding: 40px;
+    padding: 20px;
     color: #fff;
 }
 
@@ -715,7 +716,7 @@ button:hover {
 .note-view-page {
     min-height: 100vh;
     background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-    padding: 40px;
+    padding: 20px;
     color: #fff;
 }
 
@@ -760,6 +761,11 @@ button:hover {
     border-radius: 10px;
     background: #fff;
 }
+@media (max-width: 600px) {
+    .note-content iframe {
+        height: 400px;
+    }
+}
 
 /* DOWNLOAD BOX */
 .note-download-box {
@@ -790,5 +796,71 @@ button:hover {
 
     .note-header h2 {
         font-size: 24px;
+    }
+}
+
+/* ============================= */
+/* MOBILE TABLE FIX */
+/* ============================= */
+
+@media (max-width: 768px) {
+
+    .notes-table,
+    .notes-table thead,
+    .notes-table tbody,
+    .notes-table th,
+    .notes-table td,
+    .notes-table tr {
+        display: block;
+        width: 100%;
+    }
+
+    .notes-table thead {
+        display: none;
+    }
+
+    .notes-table tr {
+        margin-bottom: 15px;
+        padding: 15px;
+        background: rgba(255, 255, 255, 0.12);
+        border-radius: 12px;
+    }
+
+    .notes-table td {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 0;
+        font-size: 14px;
+    }
+
+    .notes-table td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        opacity: 0.8;
+    }
+
+    .action {
+        width: 48%;
+        text-align: center;
+        padding: 10px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 600px) {
+    .dashboard-cards,
+    .admin-cards {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .dash-card,
+    .admin-card {
+        padding: 22px;
+    }
+
+    .dash-card h3,
+    .admin-card h3 {
+        font-size: 18px;
     }
 }
